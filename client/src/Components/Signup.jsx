@@ -56,7 +56,7 @@ const Signup = () => {
                         <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Enter your Address" required />
 
                         <label htmlFor="uname"><b>Answer</b></label>
-                        <input type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} placeholder="Enter a Hint" required />
+                        <input type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} placeholder="Enter a Hint you have to remeber it" required />
 
                         <button type="submit">SIGNUP</button>
 
