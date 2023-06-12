@@ -1,16 +1,16 @@
 import React from 'react'
 import Layout from './Layout'
 
-const DeviceCheckout = () => {
+const DeviceTransfer = () => {
   return (
     <>
-    <Layout title={'Checkout Page'}>
+    <Layout title={'Transfer Page'}>
 
     </Layout>
     </>
   )
 }
 
-export default DeviceCheckout
+export default DeviceTransfer
 
 

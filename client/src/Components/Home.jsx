@@ -14,7 +14,7 @@ const Home = () => {
           </>
         ) : (
           <>
-            <Layout title={'Dashboard Page'}>
+            <Layout title={'Home Page'}>
               <h1>hello</h1>
               <pre>{JSON.stringify(auth, null, 4)}</pre>
             </Layout>

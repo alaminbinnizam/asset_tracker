@@ -68,7 +68,7 @@ const Navbar = () => {
                                             <NavLink to='/' className='nav-link' aria-current="page" >Home</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <NavLink to="/employees" className='nav-link' >Employees</NavLink>
+                                            <NavLink to="/user/employees" className='nav-link' >Employees</NavLink>
                                         </li>
 
                                         <li className="nav-item dropdown ">
@@ -76,10 +76,10 @@ const Navbar = () => {
                                                 Devices
                                             </NavLink>
                                             <ul className="dropdown-menu navbar-dark bg-light">
-                                                <li><NavLink to="/deviceCheckout" className="dropdown-item">Device Checkout</NavLink></li>
-                                                <li><NavLink to="/deviceReturn" className="dropdown-item" >Device Return</NavLink></li>
+                                                <li><NavLink to="/user/deviceTransfer" className="dropdown-item">Device Transfer</NavLink></li>
+                                                <li><NavLink to="/user/deviceReturn" className="dropdown-item" >Device Return</NavLink></li>
                                                 <li><hr className="dropdown-divider" /></li>
-                                                <li><NavLink to="/deviceLogs" className="dropdown-item" >Device Logs</NavLink></li>
+                                                <li><NavLink to="/user/deviceLogs" className="dropdown-item" >Device Logs</NavLink></li>
                                             </ul>
                                         </li>
                                         <form className="form-inline d-flex my-2 my-lg-0 ms-5">
@@ -100,8 +100,37 @@ const Navbar = () => {
                                                 </>
                                             ) : (
                                                 <>
+                                                    <li className="nav-item dropdown">
+                                                        <NavLink className="nav-link dropdown-toggle"
+                                                            role="button" data-bs-toggle="dropdown"
+                                                            aria-expanded="false">
+                                                            {auth?.user?.company.toUpperCase()}
+                                                        </NavLink>
+                                                        <ul className="dropdown-menu">
+                                                            {
+                                                                auth?.user?.role === 1 ? (
+                                                                    <>
+                                                                        <li><NavLink to='/admin/admindashboard'
+                                                                            className="dropdown-item" >
+                                                                            Dashboard
+                                                                        </NavLink></li>
+                                                                    </>) : (
+                                                                    <>
+                                                                        <li><NavLink to='/user/profile'
+                                                                            className="dropdown-item" >
+                                                                            Profile
+                                                                        </NavLink></li>
+                                                                    </>)
+                                                            }
+
+
+                                                        </ul>
+                                                    </li>
+                                                    {/* <li className="nav-item">
+                                                        <NavLink to='/profile' className='navbar-brand' > {auth?.user?.company}</NavLink>
+                                                    </li> */}
                                                     <li className="nav-item">
-                                                        <NavLink to='/login' onClick={handleLogout} className='navbar-brand' >Logout</NavLink>
+                                                        <NavLink to='/login' onClick={handleLogout} className='nav-link' >Logout</NavLink>
                                                     </li>
                                                 </>
                                             )

@@ -2,7 +2,7 @@ import React from 'react'
 import '../Styles/Signup.css'
 import Layout from './Layout'
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 import { useAuth } from '../Context/auth';
@@ -13,6 +13,7 @@ const Login = () => {
     const [auth, setAuth] = useAuth();
     // const [answer, setAnswer] = useState("");
     const navigate = useNavigate();
+    const location = useLocation();
 
 
 
@@ -31,7 +32,7 @@ const Login = () => {
                     token: res?.data?.token
                 })
                 localStorage.setItem('auth', JSON.stringify(res?.data));
-                navigate('/')
+                navigate(location.state || '/')
             } else {
                 toast.error(res?.data.message)
             }
@@ -65,7 +66,7 @@ const Login = () => {
                     </div>
 
                     <div className="container" >
-                        <span className="psw">Forgot <a href="/">password?</a></span>
+                        <span className="psw" onClick={() => { navigate('/forgot-password') }}>Forgot Password</span>
                     </div>
                 </form>
             </Layout>
