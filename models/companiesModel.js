@@ -28,6 +28,18 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    employee: [{
+      type: mongoose.Types.ObjectId,
+      ref: "Employee"
+    }],
+    category: [{
+      type: mongoose.Types.ObjectId,
+      ref: "Category"
+    }],
+    device: [{
+      type: mongoose.Types.ObjectId,
+      ref: "Device"
+    }],
     role: {
       type: Number,
       default: 0,

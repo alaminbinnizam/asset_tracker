@@ -104,6 +104,9 @@ export const loginController = async (req, res) => {
                 phone: user.phone,
                 address: user.address,
                 role: user.role,
+                employee: user.employee,
+                category: user.category,
+                device: user.device
             },
             token,
         });
@@ -168,6 +171,25 @@ export const forgotPasswordController = async (req, res) => {
         res.status(500).send({
             success: false,
             message: 'Something Went Wrong',
+            error
+        })
+    }
+}
+
+//get all companies
+export const getAllCompaniesController = async (req, res) => {
+    try {
+        const companies = await companiesModel.find({}).populate("employee")
+        res.status(201).send({
+            success: true,
+            message: "All Companies Fetched Successfully",
+            companies
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message:'Error in while getting all companies',
             error
         })
     }

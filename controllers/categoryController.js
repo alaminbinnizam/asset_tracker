@@ -1,5 +1,6 @@
 import slugify from "slugify";
 import categoryModel from "../models/categoryModel.js";
+import companiesModel from "../models/companiesModel.js";
 
 //create category
 export const createCategoryController = async (req, res) => {
@@ -19,7 +20,18 @@ export const createCategoryController = async (req, res) => {
             })
         }
 
-        const category = await new categoryModel({ deviceCategory, slug: slugify(deviceCategory) }).save();
+        const category = await new categoryModel({
+            deviceCategory,
+            slug: slugify(deviceCategory),
+            companies: req.user._id
+        }).save();
+        await companiesModel.updateOne({
+            _id: req.user._id
+        },{
+            $push: {
+                category: category._id
+            }
+        })
         res.status(201).send({
             success: true,
             message: 'New Category Created',
@@ -66,7 +78,7 @@ export const updateCategoryController = async (req, res) => {
 //get all category
 export const getAllCategoryController = async (req, res) => {
     try {
-        const category = await categoryModel.find({});
+        const category = await categoryModel.find({}).populate('device').populate('companies');;
         res.status(200).send({
             success: true,
             message: 'All Categories list',
@@ -86,7 +98,7 @@ export const getSingleCategoryController = async (req, res) => {
     try {
         const category = await categoryModel.findOne({
             slug: req.params.slug
-        });
+        }).populate('device').populate('companies');
 
         res.status(200).send({
             success: true,

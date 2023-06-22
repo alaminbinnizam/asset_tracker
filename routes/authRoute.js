@@ -1,6 +1,7 @@
 import express from "express";
 import {
     forgotPasswordController,
+    getAllCompaniesController,
     loginController,
     registerController,
     testController
@@ -19,6 +20,9 @@ router.post('/login', loginController)
 
 //forgot password
 router.post('/forgot-password', forgotPasswordController)
+
+//get all companies
+router.get('/all-companies',requireSignIn, isAdmin, getAllCompaniesController)
 
 //testing porpose
 router.get('/test', requireSignIn, isAdmin, testController)
