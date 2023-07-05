@@ -78,7 +78,7 @@ export const updateCategoryController = async (req, res) => {
 //get all category
 export const getAllCategoryController = async (req, res) => {
     try {
-        const category = await categoryModel.find({}).populate('device').populate('companies');;
+        const category = await categoryModel.find({}).populate('companies');;
         res.status(200).send({
             success: true,
             message: 'All Categories list',
