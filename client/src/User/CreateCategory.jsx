@@ -42,18 +42,19 @@ const CreateCategory = () => {
       toast.error('Something Went Wrong while getting categories');
     }
   }
-  const handleUpdate = async(e) => {
+  //updating category
+  const handleUpdate = async (e) => {
     e.preventDefault();
     try {
       const { data } = await axios.put(`/api/v1/category/update-category/${selected?._id}`,
-      {deviceCategory: updatedName});
+        { deviceCategory: updatedName });
       if (data?.success) {
         toast.success(`${updatedName} is Updated`)
         setSelected(null)
         setUpdatedName("")
         setVisible(false)
         getAllCategory()
-      }else{
+      } else {
         toast.error(data?.message)
       }
     } catch (error) {
@@ -61,9 +62,21 @@ const CreateCategory = () => {
       toast.error('Something Went Wrong!')
     }
   }
-  // const handleDelete = () => {
-
-  // }
+  //deleting category
+  const handleDelete = async (pid) => {
+    try {
+      const { data } = await axios.delete(`/api/v1/category/delete-category/${pid}`);
+      if (data?.success) {
+        toast.success(`${deviceCategory} is Deleted`);
+        getAllCategory()
+      } else {
+        toast.error(data?.message)
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error('Something Went Wrong!')
+    }
+  }
 
   useEffect(() => {
     getAllCategory();
@@ -101,7 +114,9 @@ const CreateCategory = () => {
                               onClick={() => { setVisible(true); setUpdatedName(c.deviceCategory); setSelected(c) }}
                             >Edit</button>
                             <button className='btn
-                          btn-danger btn-sm ms-2'>Delete</button>
+                          btn-danger btn-sm ms-2'
+                              onClick={() => { handleDelete(c._id) }}
+                            >Delete</button>
                           </td>
                         </tr>
                       </>

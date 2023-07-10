@@ -20,6 +20,6 @@ router.get('/getall-category',requireSignIn, getAllCategoryController);
 //get single category
 router.get('/getsingle-category/:slug', requireSignIn, getSingleCategoryController)
 //get single category
-router.get('/delete-category/:id', requireSignIn, deleteCategoryController)
+router.delete('/delete-category/:id', requireSignIn, deleteCategoryController)
 
 export default router
