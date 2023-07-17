@@ -25,12 +25,12 @@ const deviceSchema = new mongoose.Schema({
     companies: {
         type: mongoose.Types.ObjectId,
         ref: "companies"
-    }
-    // employees: { 
-    //     type: mongoose.ObjectId,  
-    //     ref: 'Employees',
-    //     required: true
-    // },
+    },
+    employee: { 
+        type: mongoose.ObjectId,  
+        ref: 'Employees',
+        required: true
+    },
     // status: {
     //     type: String,
     //     default: 'Not Process',

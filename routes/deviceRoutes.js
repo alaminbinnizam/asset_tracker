@@ -14,15 +14,15 @@ import ExpressFormidable from "express-formidable";
 
 const router = express.Router()
 
-//creating category
+//creating device
 router.post('/create-device', requireSignIn, ExpressFormidable(), createDeviceController);
-// updating category
+// updating device
 router.put('/update-device/:id', requireSignIn, ExpressFormidable(), updateDeviceController);
-// //get all category
+// //get all device
 router.get('/getall-device', requireSignIn,ExpressFormidable(), getAllDeviceController);
-// //get single category
+// //get single device
 router.get('/getsingle-device/:slug', requireSignIn, getSingleDeviceController)
-//get single category
+//get single device
 router.delete('/delete-device/:id', requireSignIn, deleteDeviceController)
 
 export default router

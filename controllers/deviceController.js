@@ -5,7 +5,7 @@ import companiesModel from "../models/companiesModel.js";
 
 export const createDeviceController = async (req, res) => {
     try {
-        const { devicename, slug, deviceSpecification, deviceSerialNum, category } = req.fields;
+        const { devicename, slug, deviceSpecification, deviceSerialNum, category, employee } = req.fields;
         //validation
         switch (true) {
             case !devicename:
@@ -19,6 +19,10 @@ export const createDeviceController = async (req, res) => {
 
             case !category:
                 return res.status(500).send({ error: 'Category is required' });
+                
+            case !employee:
+                return res.status(500).send({ error: 'employee is required' });
+
 
             // case !status:
             //     return res.status(500).send({ error: 'Status is required' });

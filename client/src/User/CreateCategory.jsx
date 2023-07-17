@@ -95,7 +95,7 @@ const CreateCategory = () => {
               <div className="p-3 w-50">
                 <CategoryForm handleSubmit={handleSubmit} value={deviceCategory} setValue={setDeviceCategory} />
               </div>
-              <div className="w-75">
+              <div className="w-50">
                 <table className="table">
                   <thead>
                     <tr>
@@ -110,7 +110,7 @@ const CreateCategory = () => {
                           <td key={c._id}>{c.deviceCategory}</td>
                           <td>
                             <button className='btn
-                          btn-primary btn-sm ms-2'
+                          btn-primary btn-sm ms-2 m-2'
                               onClick={() => { setVisible(true); setUpdatedName(c.deviceCategory); setSelected(c) }}
                             >Edit</button>
                             <button className='btn
